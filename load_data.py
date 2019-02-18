@@ -1,13 +1,7 @@
-import os
-
-import numpy as np
 import pandas as pd
-from matplotlib import pyplot
 from sqlalchemy import create_engine, MetaData
-from utils import *
 
-import sqlite3
-from pandas.io import sql
+from utils import *
 
 if not os.path.exists(RESULTS_FOLDER):
     os.makedirs(RESULTS_FOLDER)
