@@ -30,10 +30,6 @@ def top_cosine_similarity(data, user_id, top_n=10):
     return dictionary_userids_similarities
 
 
-def get_similar_users(all_user_ids, curr_user_id, user_indices):
-    print(user_indices)
-
-
 def make_hist_plot(data, filename):
     pyplot.hist(data, bins=100)
     pyplot.xlabel(filename)

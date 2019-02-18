@@ -28,13 +28,9 @@ def load_data():
     course_tags_df = pd.read_csv(os.path.join(DATA_FOLDER, COURSE_TAGS))
     print("Rows/courses with no tags COUNT", len(course_tags_df[course_tags_df['course_tags'].isnull()]))
 
-    # get matching course tags for courses with no tags:
-    # print("Rows with no tags", course_tags_df[course_tags_df['course_tags'].isnull()])
-    # courses_with_no_tags = course_tags_df[course_tags_df['course_tags'].isnull()]["course_id"]
-
     course_tags_df.dropna(subset=["course_tags"], inplace=True)
 
-    # Dictionary of Id vs Tag
+    # Dictionary of course Id vs Tag
     courseId_courseTags = {}
     for index, row in course_tags_df.iterrows():
         curr_course_id = row["course_id"]
@@ -43,9 +39,6 @@ def load_data():
             courseId_courseTags[curr_course_id] = courseId_courseTags.get(curr_course_id, []) + [curr_course_tag]
 
     all_course_tags = course_tags_df["course_tags"].unique()
-
-    # tag_matches = get_missing_course_tags(all_course_tags, courses_with_no_tags)
-    # print("Tag matches for tagless courses", tag_matches)
 
     print("Num of unique course tags = ", len(all_course_tags))
     print("Num rows in course_tags", len(course_tags_df["course_id"]))
@@ -170,11 +163,6 @@ def load_data():
     user_tag_df = pd.DataFrame(user_tag_matrix)
     user_tag_df.to_sql('user_course_tags', cnx, if_exists='replace')
     metadata.create_all(cnx)
-
-    # U,_,_ = run_SVD(user_tag_matrix)
-
-    # get similar users:
-    # get_top_n_similar_users(U, k=50, top_n=10, user_id=7847)
 
     return user_course_views, user_assessments, course_tags_df, user_interests
 
