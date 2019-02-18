@@ -69,14 +69,14 @@ Also, since the results are over reduced number of latent features, the similari
 which can help in making recommendations, followed by the similairity score. Once hosted, the end point can be accessed at
 
 ```
-http://localhost:5002/get_similar_users/{UserId}/{ResultCount}
+http://localhost:5001/get_similar_users/{UserId}/{ResultCount}
 ``` 
 
 
 Currently hosted at
 
 ```
-http://localhost:5001/get_similar_users/{UserId}/{ResultCount}
+http://34.214.130.102:5001/get_similar_users/{UserId}/{ResultCount}
 ```
 
 
