@@ -2,6 +2,8 @@ import os
 
 import numpy as np
 from matplotlib import pyplot
+from scipy.sparse import csc_matrix
+from scipy.sparse.linalg import svds, eigs
 
 DATA_FOLDER = "data"
 COURSE_TAGS = "course_tags.csv"
@@ -75,13 +77,14 @@ def get_missing_course_tags(all_course_tags, course_ids):
 
 
 def get_top_n_similar_users(U, k, top_n, user_id):
-    sliced = U.T[:, :k]
+    sliced = U[:, :k]
     id_sim_dict = top_cosine_similarity(sliced, user_id, top_n)
     id_sim_dict.pop(user_id, None)
     return id_sim_dict
 
 
 def run_SVD(user_tag_matrix):
-    U, S, V = np.linalg.svd(user_tag_matrix)
-    print(U.shape, S.shape, V.shape)
-    return U, S, V
+    A = csc_matrix(user_tag_matrix, dtype=float)
+    U, _, _ = svds(A)
+    print(U.shape)
+    return U, _, _
