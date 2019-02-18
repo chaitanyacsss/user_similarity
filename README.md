@@ -62,6 +62,7 @@ This matrix is normalized per user.
 the the dimensions can be reduced because of the correlations, which makes SVD a viable technique for this data.
 
 7) Using Singular Value Decomposition(SVD) on the User x Tag matrix and Cosine similarity on the top of the result, we get user similarity scores for a given user Id.
+Since the SVD matrices are sparse, We use scipy.sparse.linalg.svds which takes in a sparse matrix input and outputs upto k latent features, thereby reducing memory consumption.
 
 8) A Rest API end point is created using Flask and given a User Id and count n, the end-point gives n most similar users for the given id and the courses viewed by them,
 which can help in making recommendations, followed by the similairity score. Once hosted, the end point can be accessed at
@@ -69,6 +70,14 @@ which can help in making recommendations, followed by the similairity score. Onc
 ```
 http://localhost:5002/get_similar_users/{UserId}/{ResultCount}
 ``` 
+
+
+Currently hosted at
+
+```
+http://localhost:5001/get_similar_users/{UserId}/{ResultCount}
+```
+
 
 The resulting json looks like this
 
