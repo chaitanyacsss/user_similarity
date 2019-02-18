@@ -3,7 +3,7 @@ import os
 import numpy as np
 from matplotlib import pyplot
 from scipy.sparse import csc_matrix
-from scipy.sparse.linalg import svds, eigs
+from scipy.sparse.linalg import svds
 
 DATA_FOLDER = "data"
 COURSE_TAGS = "course_tags.csv"
