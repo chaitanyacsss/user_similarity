@@ -102,14 +102,13 @@ If there are no courses viewed by the user, the result just contains the similar
 
 ## Future Improvements and Context-based Exploration ##
 
-1) The data contains relatively small number of data points (10000 users). Inorder to scale this model, the folowing steps can be useful.
+* The data contains relatively small number of data points (10000 users). Inorder to scale this model, the folowing steps can be useful.
 
-* User-Tag and SVD matrices are sparse matrices, we can use scipy's csr_matrix to convert to a dictionary of indices,values.
+* User-Tag and SVD matrices are sparse matrices, we can use scipy's csr_matrix to convert to a dictionary of indices,values and save the dictionary to db.
 
-* The SVD calculation is done when the services are started, this is because the matrix has 10000 columns, which is over the sqlite limit. This will be an issue when scaled up.
-Using a better backend would be helpful.
+* The SVD calculation is done when the services are started, in order to keep the number of latent features flexible. We can also save the calculations to the DB in a production environment.
 
-* While SVD itself scales considerably, using Something similar to Vector Space Model with inverted index where users and courses can be represented as vectors in a d-dimensional space can be using while scaling.
+* While SVD itself scales considerably, using something similar to Vector Space Model with inverted index where users and courses can be represented as vectors in a d-dimensional space can be using while scaling.
 
 * Techniques like Approximate Nearest Neighbours, k-d tree and Locality Sensitive Hashing can also be applied which can be pretty effective in large scale environments.
 
