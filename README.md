@@ -22,11 +22,15 @@ This also has the course author handle information which can help in identifying
 
 2) There are 998 Unique Course tags, 54 unique assessment tags and 748 unique interest tags where the overlap looks like
 
-
+```
 Intersection(Interest Tags, Course Tags) = 591
+
 Intersection(Assessment Tags, Course Tags) = 16
+
 Intersection(Assessment Tags, Interest Tags) = 17
+
 Intersection(Interest Tags, Course Ids) = 23
+```
 
 3) There are 1412 unique Author handles.
 
