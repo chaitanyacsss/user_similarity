@@ -85,6 +85,6 @@ def get_top_n_similar_users(U, k, top_n, user_id):
 
 def run_SVD(user_tag_matrix):
     A = csc_matrix(user_tag_matrix, dtype=float)
-    U, _, _ = svds(A)
+    U, _, _ = svds(A,k=150)
     print(U.shape)
     return U, _, _
