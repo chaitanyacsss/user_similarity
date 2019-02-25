@@ -61,9 +61,9 @@ This matrix is normalized per user.
 6) The normalized matrix is saved into a new table in the database. This UserxTag matrix is of shape 10000x998. Looking at the tags, it is clear that many of them are correlated and
 the the dimensions can be reduced because of the correlations, which makes SVD a viable technique for this data.
 
-7) Using Singular Value Decomposition(SVD) on the User x Tag matrix and Cosine similarity on the top of the result, we get user similarity scores for a given user Id.
-Since the SVD matrices are sparse, We use scipy.sparse.linalg.svds which takes in a sparse matrix input and outputs upto k(=150) latent features, thereby reducing memory consumption.
-Also, lesser the number of latent features, higher the similarity values.
+7) Using Singular Value Decomposition(SVD) on the User x Tag matrix and Cosine similarity on the top of the result, we get user similarity scores for a given user Id. As SVD gives a vectorized representation of users, it is trivial to use a similarity measure like cosine similarity rather than a regular distance measure.
+Also, since the SVD matrices are sparse, We use scipy.sparse.linalg.svds which takes in a sparse matrix input and outputs upto k(=150) latent features, thereby reducing memory consumption.
+It is to be noted that lesser the number of latent features, higher the similarity values.
 
 8) A Rest API end point is created using Flask and given a User Id and count n, the end-point gives n most similar users for the given id and the courses viewed by them,
 which can help in making recommendations, followed by the similairity score. Once hosted, the end point can be accessed at
@@ -111,5 +111,11 @@ If there are no courses viewed by the user, the result just contains the similar
 * While SVD itself scales considerably, using something similar to Vector Space Model with inverted index where users and courses can be represented as vectors in a d-dimensional space can be using while scaling.
 
 * Techniques like Approximate Nearest Neighbours, k-d tree and Locality Sensitive Hashing can also be applied which can be pretty effective in large scale environments.
+
+* As the next steps in model improvement, as we get more data, we can Authors-Users relationship as new features wherein we should collection user ratings for courses. 
+A bad rated author should not be in suggestions for that particular user.
+
+* We can also add the level of the user (beginner/moderate/advanced) to infer what kind of courses the user would be next interested in.
+
 
 
